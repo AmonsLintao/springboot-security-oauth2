@@ -13,9 +13,11 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/oauth/**", "/login/**", "/logout/**").permitAll()
-                .antMatchers("/client/redirect-uri").permitAll()
+        http.requestMatchers()
+//                .antMatchers("/client/user-resource") // <1>
+                .and()
+            .authorizeRequests()
+                .antMatchers("/client/user-resource").permitAll() // All those won't take effect if we comment out line <1>
                 .anyRequest().authenticated()
                 .and()
             .formLogin();
