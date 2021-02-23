@@ -18,7 +18,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/client/redirect-uri").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .formLogin();
+            .formLogin();
     }
 
     @Bean
